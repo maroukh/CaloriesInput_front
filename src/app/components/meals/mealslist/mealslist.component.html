@@ -1,0 +1,61 @@
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <!-- <h4 class="card-title">Your Meals</h4> -->
+            <!-- <p class="card-description">
+                Add class <code>.table-hover</code>
+            </p> -->
+            <a type="button" class="btn btn-gradient-primary btn-fw" routerLink="/meals/add">New meal</a>
+            <br><br>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th *ngIf="isAdmin() || isManager()">User Name</th>
+                            <th *ngIf="isAdmin() || isManager()">User Email</th>
+                            <th>Date Time</th>
+                            <th>Calories</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let meal of meals; let i = index">
+                            <td class="py-1">
+                                <img [src]="meal.fileUrl" alt="image" />
+                            </td>
+                            <td>{{ meal.title }}</td>
+                            <td class="col-lg-3">{{ meal.description }}</td>
+                            <td *ngIf="isAdmin() || isManager()">{{ meal.user.username }}</td>
+                            <td *ngIf="isAdmin() || isManager()">{{ meal.user.email }}</td>
+                            <td>{{ meal.dateTimeOfMeal | date:'short'}}</td>
+                            <td *ngIf="meal.calories>=1000; else elseBlockCal" class="text-danger"> {{ meal.calories }} <i class="mdi mdi-arrow-down"></i></td>
+                            <ng-template #elseBlockCal><td class="text-success"> {{ meal.calories }} <i class="mdi mdi-arrow-up"></i></td></ng-template>
+                            
+                            <td *ngIf="meal.calories>=1000; else elseBlockBadge"><label class="badge badge-danger">KO</label></td>
+                            <ng-template #elseBlockBadge><td><label class="badge badge-success">OK</label></td></ng-template>
+
+                            <td>
+                                <button class="btn btn-gradient-info btn-sm" (click)="removeMeal(meal.id)">
+                                    Delete
+                                </button>
+
+                                <a class="btn btn-gradient-light btn-sm" routerLink="/meals/update/{{ meal.id }}">
+                                    Edit
+                                </a>
+
+                                <a class="btn btn-gradient-dark btn-sm" routerLink="/meals/details/{{ meal.id }}">
+                                    Details
+                                </a>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

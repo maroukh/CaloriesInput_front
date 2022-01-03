@@ -1,0 +1,57 @@
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">New Meal</h4>
+            <form #f="ngForm" class="forms-sample">
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <input type="text" class="form-control" placeholder="Title" id="title" required
+                        [(ngModel)]="meal.title" name="title" #title="ngModel"
+                        [ngClass]="{ 'is-invalid': submitted && title.errors }">
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea class="form-control" rows="4" id="description" required [(ngModel)]="meal.description"
+                        name="description" #description="ngModel" placeholder="Description....."
+                        [ngClass]="{ 'is-invalid': submitted && description.errors }"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="calories">Calories</label>
+                    <input type="number" class="form-control" placeholder="Calories" id="calories"
+                        [pattern]="caloriesPattern" required [(ngModel)]="meal.calories" name="calories"
+                        #calories="ngModel" [ngClass]="{ 'is-invalid': submitted && calories.errors }">
+                </div>
+
+                <div class="form-group">
+                    <label for="dateOfMeal">Date Of Meal</label>
+                    <input type="date" class="form-control" id="dateOfMeal" required placeholder="yyyy-mm-dd"
+                    name="dateOfMeal" [(ngModel)]="dateOfMeal"
+                    [ngClass]="{ 'is-invalid': submitted && dOfMeal.errors }" #dOfMeal="ngModel">
+                </div>
+
+                <div class="form-group">
+                    <label for="timeOfMeal">Time of Meal</label>
+                    <input type="text" class="form-control" placeholder="HH:MM" name="timeOfMeal"
+                    [pattern]="timeOfMealPattern" id="timeOfMeal" required #tOfMeal="ngModel"
+                    [(ngModel)]="timeOfMeal" [ngClass]="{ 'is-invalid': submitted && tOfMeal.errors }">
+                </div>
+
+                <div class="form-group">
+                    <label>File upload</label>
+                    <input type="file" #file name="selectFile" class="file-upload-default" (change)="selectFile($event)">
+                    <div class="input-group col-xs-12">
+                        <input type="text" [value]="file.value" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                        <span class="input-group-append">
+                            <button class="file-upload-browse btn btn-gradient-primary" (click)="file.click();" type="button">Upload</button>
+                        </span>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-gradient-primary mr-2" (click)="saveMeal();file.value='';" [disabled]="f.invalid">Submit</button>
+                <button class="btn btn-light">Cancel</button>
+                <div *ngIf="messageMealOk != '' " role="alert" class="alert alert-success"> {{messageMealOk}} </div>
+            </form>
+        </div>
+    </div>
+</div>

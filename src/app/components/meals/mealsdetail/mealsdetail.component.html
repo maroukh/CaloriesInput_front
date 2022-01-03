@@ -1,0 +1,71 @@
+<div class="page-header">
+    <h3 class="page-title">
+      <!-- <span class=""> -->
+      <a class="page-title-icon bg-gradient-primary text-white mr-2" routerLink="/meals/update/{{ meal.id }}">
+        <i class="mdi mdi-lead-pencil"></i>
+      </a>
+      <!-- </span> -->
+      Edit
+    </h3>
+  </div>
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title"><i>Détails</i></h4>
+            <!-- <p class="card-description">Consommé le <code>{{meal.dateTimeOfMeal}}</code></p> -->
+            <div class="mt-4">
+                <ngb-accordion [closeOthers]="true" activeIds="collapse-1">
+                    <ngb-panel id="collapse-1" title="{{meal.title}}">
+                        <ng-template ngbPanelContent>
+                            <div class="row">
+                                <div class="col-3">
+                                    <img [src]="meal.fileUrl" class="mw-100" />
+                                </div>
+                            </div>
+                        </ng-template>
+                    </ngb-panel>
+                    <ngb-panel id="collapse-3" title="Description">
+                        <ng-template ngbPanelContent>
+                            <ul class="pl-3 mt-4">
+                                <p>{{meal.description}}</p>
+                                <p>Consommé le {{meal.dateTimeOfMeal}}</p>
+                                <p>Contient: {{meal.calories}} calories</p>
+                            </ul>
+                                <p class="text-success"><i class="mdi mdi-alert-octagon mr-2"></i>Ce repas présente :</p>
+                                <ul>
+                                    <li>60% du nombre de calories attendu par l'utilisateur</li>
+                                    <li>70% du nombre de calories consommé par l'utilisateur ce jour</li>
+                                </ul>
+                        </ng-template>
+                    </ngb-panel>
+                    <ngb-panel id="collapse-4" title="Repas consommés le même jour">
+                        <ng-template ngbPanelContent>
+                                <p class="text-success"><i class="mdi mdi-alert-octagon mr-2"></i>Le même jour :</p>
+                                <ul>
+                                    <li *ngFor="let m of sameDateMeals; let i = index">
+                                        
+                                            <span class="py-1 sameMealInfo">
+                                                <img class="img-upload" [src]="m.fileUrl" alt="image" />
+                                            </span>
+                                            <span class="sameMealInfo">{{ m.title }}</span>
+                                            <span class="sameMealInfo">{{ m.description }}</span>
+                                            <span class="sameMealInfo">{{ m.dateTimeOfMeal | date:'short'}}</span>
+                                            <span *ngIf="m.calories>=1000; else elseBlockCal" class="sameMealInfo text-danger"> {{ m.calories }} <i class="mdi mdi-arrow-down"></i></span>
+                                            <ng-template #elseBlockCal><span class="sameMealInfo text-success"> {{ m.calories }} <i class="mdi mdi-arrow-up"></i></span></ng-template>
+                                            
+                                            <span class="sameMealInfo" *ngIf="m.calories>=1000; else elseBlockBadge"><label class="badge badge-danger">KO</label></span>
+                                            <ng-template #elseBlockBadge><span class="sameMealInfo"><label class="badge badge-success">OK</label></span></ng-template>
+                                            <span class="sameMealInfo">
+                                                <a class="btn btn-gradient-dark btn-sm" (click)="changeMeal(m.id)">
+                                                    Detail
+                                                </a>
+                                            </span>
+                                    </li>
+                                </ul>
+                        </ng-template>
+                    </ngb-panel>
+                </ngb-accordion>
+            </div>
+        </div>
+    </div>
+</div>

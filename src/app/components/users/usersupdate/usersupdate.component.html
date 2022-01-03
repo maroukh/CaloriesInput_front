@@ -1,0 +1,101 @@
+<div class="row">
+    <div class="col-md-8 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">User information</h4>
+                <p class="card-description">
+
+                </p>
+                <form #f="ngForm" class="forms-sample">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" class="form-control" id="username" required
+                            [(ngModel)]="currentUser.username" name="username" #username="ngModel"
+                            [ngClass]="{ 'is-invalid': username.errors }" placeholder="Username" />
+                        <div *ngIf="username.errors" class="invalid-feedback">
+                            <div *ngIf="username.errors.required">Username is required</div>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email address</label>
+                        <input type="email" class="form-control" id="email" required email
+                            [(ngModel)]="currentUser.email" placeholder="Email" name="email" #email="ngModel"
+                            [ngClass]="{ 'is-invalid': email.errors }" />
+                        <div *ngIf="email.errors" class="invalid-feedback">
+                            <div *ngIf="email.errors.required">Email is required</div>
+                            <div *ngIf="email.errors.email">Email Format error</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" required placeholder="Password"
+                            [(ngModel)]="currentUser.password" name="password" #password="ngModel"
+                            [ngClass]="{ 'is-invalid': password.errors }" />
+                        <div *ngIf="password.errors" class="invalid-feedback">
+                            <div *ngIf="password.errors.required">password is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="expectedcalories">Expected calories</label>
+                        <input type="text" class="form-control" id="expectedcalories" required
+                            placeholder="Expected calories" [(ngModel)]="currentUser.expectedcalories"
+                            name="expectedcalories" [pattern]="caloriesPattern" #expectedcalories="ngModel"
+                            [ngClass]="{ 'is-invalid': expectedcalories.errors }" />
+                        <div *ngIf="expectedcalories.errors" class="invalid-feedback">
+                            <div *ngIf="expectedcalories.errors.required">expected calories is required</div>
+                            <div *ngIf="expectedcalories.errors.pattern">expected calories error pattern</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Roles</label>
+                        <div class="form-check form-check-flat form-check-primary">
+                            <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input" value="" id="isuser"
+                                    [(ngModel)]="isuser" name="isuser">
+                                User
+                                <i class="input-helper"></i>
+                            </label>
+                        </div>
+                        <div class="form-check form-check-flat form-check-primary">
+                            <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input" value="" id="ismanager"
+                                    [(ngModel)]="ismanager" name="ismanager">
+                                Manager
+                                <i class="input-helper"></i>
+                            </label>
+                        </div>
+                        <div class="form-check form-check-flat form-check-primary">
+                            <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input" value="" id="isadmin"
+                                    [(ngModel)]="isadmin" name="isadmin">
+                                Admin
+                                <i class="input-helper"></i>
+                            </label>
+                        </div>
+                    </div>
+                    <button (click)="updateUser()" [disabled]="f.invalid" class="btn btn-success">Submit</button>
+                    <p>{{ message }}</p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3 cardImageUpdate grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="userImageUpdate">
+                    <img class="userImageUpdate" [src]="currentUser.fileUrl" alt="profile">
+                </div>
+                <ngb-progressbar type="primary" class="progressStyle" [value]="uploadProgressValue" striped="true" animated="true"></ngb-progressbar>
+                <div class="cardImageUpdateSub">
+                    <button (click)="file.click()" class="btn btn-outline-primary">Upload new photo</button>
+                </div>
+                <div class="form-group">
+                    <input type="file" #file name="selectFile" class="file-upload-default"
+                        (change)="selectFile($event)">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
