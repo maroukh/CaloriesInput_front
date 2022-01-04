@@ -1,9 +1,15 @@
 import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
+import { API_CONFIG } from '../helpers/config';
 import { Meal } from '../models/meal.model';
 
-const MEAL_API = 'http://localhost:8080/api/Meal';
+let MEAL_API = API_CONFIG.LOCAL_URI;
+if(API_CONFIG.API_TYPE == "cloud"){
+  MEAL_API = API_CONFIG.CLOUD_URI;
+}
+MEAL_API+="/Meal";
+//const MEAL_API = 'http://localhost:8080/api/Meal';
 
 @Injectable({
   providedIn: 'root'

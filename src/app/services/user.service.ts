@@ -1,10 +1,18 @@
 import { HttpClient, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { API_CONFIG } from '../helpers/config';
 import { User } from '../models/user.model';
 
-const API_URL = 'http://localhost:8080/api/test/';
-const USER_API = 'http://localhost:8080/api/user';
+
+let API = API_CONFIG.LOCAL_URI;
+if(API_CONFIG.API_TYPE == "cloud"){
+  API = API_CONFIG.CLOUD_URI;
+}
+const USER_API = API+"/user";
+const API_URL = API+'/test/';
+//const API_URL = 'http://localhost:8080/api/test/';
+//const USER_API = 'http://localhost:8080/api/user';
 
 @Injectable({
   providedIn: 'root'

@@ -1,8 +1,16 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
+import { API_CONFIG } from '../helpers/config';
 
-const AUTH_API = 'http://localhost:8080/api/auth/';
+
+let AUTH_API = API_CONFIG.LOCAL_URI;
+if(API_CONFIG.API_TYPE == "cloud"){
+  AUTH_API = API_CONFIG.CLOUD_URI;
+}
+AUTH_API+="/auth/";
+
+//const AUTH_API = 'http://localhost:8080/api/auth/';
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
