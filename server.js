@@ -15,7 +15,8 @@ res.sendFile(path.join(__dirname+'/dist/CaloriesInput_front/index.html'));
 app.use(express.static(`${__dirname}/CaloriesInput_front/dist/`));
 
 app.get('*', (req, res) => {
-    res.sendFile(`${__dirname}/CaloriesInput_front/dist/index.html`); // load the single view file (angular will handle the page changes on the front-end)
+    res.json({ message: "Welcome to Calories Counter application." + `${__dirname}/CaloriesInput_front/dist/index.html` });
+    //res.sendFile(`${__dirname}/CaloriesInput_front/dist/index.html`); // load the single view file (angular will handle the page changes on the front-end)
 })
 
 // Start the app by listening on the default Heroku port
