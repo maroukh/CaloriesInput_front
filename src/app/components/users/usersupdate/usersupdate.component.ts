@@ -10,15 +10,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class UsersupdateComponent implements OnInit {
 
-  currentUser: User = {
-    id: '',
-    username: '',
-    email: '',
-    password: '',
-    issocial: 0,
-    expectedcalories: 0,
-    roles: []
-  };
+  currentUser: User = new User('','','','',0,0,[]);
 
   submitted = false;
   isuser = false;
