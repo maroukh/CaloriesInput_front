@@ -26,6 +26,7 @@ export class MealsupdateComponent implements OnInit {
   selectedFiles?: FileList;
   currentFile?: File;
   fileValue:any= "";
+  submitted:boolean=false;
 
   constructor(
     private mealService: MealService,
