@@ -24,7 +24,7 @@ app.use(express.static(`${__dirname}/CaloriesInput_front/dist/`));
 // );
 
 app.get('*', (req, res) => {
-    res.sendFile(`./CaloriesInput_front/dist/index.html`); // load the single view file (angular will handle the page changes on the front-end)
+    res.sendFile(`${__dirname}/CaloriesInput_front/dist/index.html`); // load the single view file (angular will handle the page changes on the front-end)
 });
 
 // Start the app by listening on the default Heroku port
