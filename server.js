@@ -13,7 +13,9 @@ res.sendFile(path.join(__dirname+'/dist/CaloriesInput_front/index.html'));
 });*/
 
 // Serve only the static files form the dist directory
-app.use(express.static('./dist/CaloriesInput_front'));
+//app.use(express.static('./dist/CaloriesInput_front'));
+
+app.use(express.static(`${__dirname}/front-end/dist/`));
 
 // app.get('/*', (req, res) =>
 //    res.sendFile('index.html', {
