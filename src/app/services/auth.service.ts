@@ -8,7 +8,7 @@ let AUTH_API = API_CONFIG.LOCAL_URI;
 if(API_CONFIG.API_TYPE == "cloud"){
   AUTH_API = API_CONFIG.CLOUD_URI;
 }
-AUTH_API+="/api/auth/";
+AUTH_API+="/auth/";
 
 //const AUTH_API = 'http://localhost:8080/api/auth/';
 const httpOptions = {
