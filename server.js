@@ -15,11 +15,15 @@ res.sendFile(path.join(__dirname+'/dist/CaloriesInput_front/index.html'));
 // Serve only the static files form the dist directory
 app.use(express.static('./dist/CaloriesInput_front'));
 
-app.get('/*', (req, res) =>
-   res.sendFile('index.html', {
-      root: 'dist/CaloriesInput_front/'
-   }),
-);
+// app.get('/*', (req, res) =>
+//    res.sendFile('index.html', {
+//       root: 'dist/CaloriesInput_front/'
+//    }),
+// );
+
+app.get('*', (req, res) => {
+    res.sendFile(`./front-end/dist/index.html`); // load the single view file (angular will handle the page changes on the front-end)
+});
 
 // Start the app by listening on the default Heroku port
 app.listen(process.env.PORT || 8080);
