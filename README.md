@@ -4,7 +4,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 <h1>Demo</h1>
 
-## [![N|Solid](preview.jpg)](https://bootstrapdash.com/demo/purple-angular-free/preview/dashboard/)
+## [![N|Solid](demo.PNG)](https://inputcaloriesfront.herokuapp.com/)
 
 ## Development server
 
