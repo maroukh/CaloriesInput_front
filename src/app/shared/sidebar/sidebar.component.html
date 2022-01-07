@@ -86,7 +86,7 @@
       </div>
     </li>
 
-    <li class="nav-item">
+    <li *ngIf="isAdmin() || isManager()" class="nav-item">
       <a class="nav-link" (click)="uiBasicCollapsed = !uiBasicCollapsed"
         [attr.aria-expanded]="uiBasicCollapsed" aria-controls="auth">
         <span class="menu-title">Users</span>

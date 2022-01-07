@@ -10,13 +10,14 @@ import { UsersdetailsComponent } from './components/users/usersdetails/usersdeta
 import { UserslistComponent } from './components/users/userslist/userslist.component';
 import { UsersupdateComponent } from './components/users/usersupdate/usersupdate.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { AdminGuard } from './Guards/admin-guard.service';
 import { AuthGuard } from './Guards/auth-guard.service';
 import { ManagerGuard } from './Guards/manger-guard.service';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  { path: 'dashboard', component: DashboardComponent },
+  { path: '', canActivate: [AuthGuard,ManagerGuard,AdminGuard], redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: 'dashboard', canActivate: [AuthGuard,ManagerGuard,AdminGuard], component: DashboardComponent },
   { path: 'basic-ui', loadChildren: () => import('./basic-ui/basic-ui.module').then(m => m.BasicUiModule) },
   { path: 'charts', loadChildren: () => import('./charts/charts.module').then(m => m.ChartsDemoModule) },
   { path: 'forms', loadChildren: () => import('./forms/form.module').then(m => m.FormModule) },

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Validation from 'src/app/helpers/validation';
 import { MealService } from 'src/app/services/meal.service';
+import { TokenStorageService } from 'src/app/services/token-storage.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -19,12 +20,14 @@ export class SidebarComponent implements OnInit {
   dateOfMealTo: any;
   timeOfMealFrom: any;
   timeOfMealTo: any;
+  currentUser: any;
   
-  constructor(private formBuilder: FormBuilder, private mealService: MealService) { }
+  constructor(private formBuilder: FormBuilder, private mealService: MealService, private tokenStorage: TokenStorageService) { }
 
   ngOnInit() {
     const body = document.querySelector('body');
     this.initFilterForm();
+    this.currentUser = this.tokenStorage.getUser();
 
     // add class 'hover-open' to sidebar navitem while hover in sidebar-icon-only menu
     document.querySelectorAll('.sidebar .nav-item').forEach(function (el) {
@@ -39,6 +42,13 @@ export class SidebarComponent implements OnInit {
         }
       });
     });
+  }
+
+  isAdmin(){
+    return this.currentUser.roles.includes('ROLE_ADMIN');
+  }
+  isManager(){
+    return this.currentUser.roles.includes('ROLE_ADMIN')||this.currentUser.roles.includes('ROLE_MANAGER');
   }
 
 
