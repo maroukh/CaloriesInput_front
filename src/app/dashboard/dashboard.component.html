@@ -68,7 +68,7 @@
               <tr *ngFor="let user of lastUsers; let i = index">
                 <td>
                   <!-- <img [src]="user.fileUrl != '' ? user.fileUrl : 'assets/images/faces/face1.jpg'" class="mr-2" alt="image"> -->
-                  <img [src]="user.fileUrl" *ngIf="user.fileUrl != '';else contenu">
+                  <img [src]="user.fileUrl" *ngIf="user.fileUrl;else contenu">
                   <ng-template #contenu>
                     <img src='assets/images/faces/face1.jpg'>
                   </ng-template>
