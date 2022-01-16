@@ -160,11 +160,12 @@
           </div>
         </div>
         <div class="row mt-3">
-          <div class="col-12 pr-1">
-            <a *ngFor="let meal of lastMeals" routerLink="/meals/details/{{ meal.id }}">
-            <img  [src]="meal.fileUrl" class="col-6 height200 p-1 mb-1 rounded"
-              alt="image">
-            </a>
+          <div class="row pr-1">
+            <div class="col-6  pr-1">
+              <a *ngFor="let meal of lastMeals" routerLink="/meals/details/{{ meal.id }}">
+                <img [src]="meal.fileUrl" class="height200 p-1 mb-1 rounded" alt="image">
+              </a>
+            </div>
             <!-- <img src="assets/images/dashboard/img_1.jpg" class="height200 col-6 p-1 mb-1 rounded" alt="image">
             <img src="assets/images/dashboard/img_4.jpg" class="height200 col-6 p-1 mb-1 rounded" alt="image">          
             <img src="assets/images/dashboard/img_2.jpg" class="height200 mb-1 rounded col-6 p-1" alt="image">
